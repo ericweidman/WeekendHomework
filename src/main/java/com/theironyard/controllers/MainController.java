@@ -20,14 +20,21 @@ public class MainController {
     UserRepository users;
 
     @Autowired
-    Job jobs;
+    UserRepository jobs;
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(HttpSession session, Model model){
         String userName = (String) session.getAttribute("userName");
         User user = users.findFirstByName(userName);
-
+        model.addAttribute("user", user);
         return "home";
+    }
+
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public String login(HttpSession session, String userName, String password){
+
+        session.setAttribute("userName", userName);
+        return "redirect:/";
     }
 }
