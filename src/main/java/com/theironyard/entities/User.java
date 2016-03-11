@@ -14,7 +14,7 @@ public class User {
     int id;
 
     @Column(nullable = false, unique = true)
-    String userName;
+    String name;
 
     @Column(nullable = false)
     String passwordHash;
@@ -27,8 +27,8 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public User(String userName, String passwordHash) {
-        this.userName = userName;
+    public User(String name, String passwordHash) {
+        this.name = name;
         this.passwordHash = passwordHash;
     }
 }
