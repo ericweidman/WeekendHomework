@@ -23,8 +23,8 @@ public class User {
     public User() {
     }
 
-    public User(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
     public User(String name, String passwordHash) {

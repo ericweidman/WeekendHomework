@@ -6,12 +6,13 @@
 <input type="password" placeholder="Password" name="password" required/>
 <button type="submit">Login</button>
 </form>
-{{user}}
+{{/user}}
 {{#user}}
 Welcome {{name}}!
 <form action="/logout" method="post">
 <button type="submit">Logout</button>
 </form>
 <br><br>
+{{/user}}
 </body>
 </html>
