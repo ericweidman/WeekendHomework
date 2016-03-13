@@ -1,6 +1,8 @@
 package com.theironyard.controllers;
 
+import com.theironyard.entities.Job;
 import com.theironyard.entities.User;
+import com.theironyard.services.JobRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class MainController {
     UserRepository users;
 
     @Autowired
-    UserRepository jobs;
+    JobRepository jobs;
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
@@ -52,8 +54,11 @@ public class MainController {
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String add(HttpSession session) {
-
+    public String add(HttpSession session, String companyName, String url, String dateApplied) {
+        String userName = (String) session.getAttribute("userName");
+        User user = users.findFirstByName(userName);
+        Job job = new Job(companyName, url, dateApplied, user);
+        jobs.save(job);
         return "redirect:/";
     }
 
