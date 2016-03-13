@@ -1,11 +1,17 @@
 <html>
 <body>
-{{#message}}
+
+{{#jobs}}
+
+{{companyName}} {{url}} {{dateApplied}}
+
 <form action="/editJob" method="post">
-    <input type="text" placeholder="{{text}}" name="userEdit"/>
-    <input type="hidden" value="{{id}}" name="id"/>
-    <button type="submit">Edit</button>
+    <input type="hidden"  value="{{id}}" name="editId">
+    <input type="text" onclick="this.select();" value="{{companyName}}" name="editCompany">
+    <input type="text" onclick="this.select();" value="{{url}}" name="editUrl">
+    <input type="text" onclick="this.select();" value="{{dateApplied}}" name="editDateApplied">
+    <button type="submit">Submit</button>
 </form>
-{{/message}}
+{{/jobs}}
 </body>
 </html>

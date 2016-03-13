@@ -70,14 +70,14 @@ public class MainController {
         return "redirect:/";
     }
     @RequestMapping(path = "/editJob", method = RequestMethod.GET)
-    public String edit(Model model, Integer id){
-        Job editJob = jobs.findOne(id);
-        model.addAttribute("editJob", editJob);
+    public String edit(Model model, int editId){
+        Job editJob = jobs.findOne(editId);
+        model.addAttribute("jobs", editJob);
         return "edit";
     }
     @RequestMapping(path = "/editJob", method = RequestMethod.POST)
-    public String edit(Integer id, String editCompany, String editUrl, String editDateApplied){
-        Job job = jobs.findOne(id);
+    public String edit(int editId, String editCompany, String editUrl, String editDateApplied){
+        Job job = jobs.findOne(editId);
         job.companyName = editCompany;
         job.url = editUrl;
         job.dateApplied = editDateApplied;

@@ -23,9 +23,9 @@ Welcome {{name}}!
 
 <form action="/remove" method="post">
 <li>{{companyName}} {{url}} {{dateApplied}}
-    <a href="/?id={{id}}">Edit</a>
 <input type="hidden" value="{{id}}" name="id">
 <button type="submit">Delete</button>
+    <a href="/editJob?editId={{id}}">Edit</a>
 
 </li>
 </form>
