@@ -69,5 +69,19 @@ public class MainController {
         jobs.delete(id);
         return "redirect:/";
     }
-
+    @RequestMapping(path = "/editJob", method = RequestMethod.GET)
+    public String edit(Model model, Integer id){
+        Job editJob = jobs.findOne(id);
+        model.addAttribute("editJob", editJob);
+        return "edit";
+    }
+    @RequestMapping(path = "/editJob", method = RequestMethod.POST)
+    public String edit(Integer id, String editCompany, String editUrl, String editDateApplied){
+        Job job = jobs.findOne(id);
+        job.companyName = editCompany;
+        job.url = editUrl;
+        job.dateApplied = editDateApplied;
+        jobs.save(job);
+        return "redirect:/";
+    }
 }

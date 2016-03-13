@@ -13,11 +13,11 @@ public class Job {
     int id;
 
     @Column(nullable = false)
-    String companyName;
+    public String companyName;
     @Column(nullable = false)
-    String url;
+    public String url;
     @Column(nullable = false)
-    String dateApplied;
+    public String dateApplied;
 
     @ManyToOne
     User user;
@@ -30,5 +30,11 @@ public class Job {
         this.url = url;
         this.dateApplied = dateApplied;
         this.user = user;
+    }
+
+    public Job(String companyName, String url, String dateApplied) {
+        this.companyName = companyName;
+        this.url = url;
+        this.dateApplied = dateApplied;
     }
 }
