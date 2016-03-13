@@ -20,10 +20,13 @@ Welcome {{name}}!
     </form>
 <ol>
 {{#jobs}}
+
 <form action="/remove" method="post">
 <li>{{companyName}} {{url}} {{dateApplied}}
+    <a href="/?id={{id}}">Edit</a>
 <input type="hidden" value="{{id}}" name="id">
 <button type="submit">Delete</button>
+
 </li>
 </form>
 {{/jobs}}
