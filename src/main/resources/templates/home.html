@@ -8,11 +8,26 @@
 </form>
 {{/user}}
 {{#user}}
-Welcome {{name}}!
 <form action="/logout" method="post">
-<button type="submit">Logout</button>
+    <button type="submit">Logout</button>
+    </form>
+Welcome {{name}}!
+<form action="/add" method="post">
+<input type="text" placeholder="Company Name" name="companyName">
+<input type="text" placeholder="Listing URL" name="url">
+<input type="text" placeholder="Date Applied" name="dateApplied">
+    <button type="submit">Submit</button>
+    </form>
+<ol>
+{{#jobs}}
+<form action="/remove" method="post">
+<li>{{companyName}} {{url}} {{dateApplied}}
+<input type="hidden" value="{{id}}" name="id">
+<button type="submit">Delete</button>
+</li>
 </form>
-<br><br>
+{{/jobs}}
+</ol>
 {{/user}}
 </body>
 </html>
