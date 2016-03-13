@@ -31,6 +31,7 @@ public class MainController {
         String userName = (String) session.getAttribute("userName");
         User user = users.findFirstByName(userName);
         model.addAttribute("user", user);
+        model.addAttribute("jobs", jobs.findAll());
         return "home";
     }
 
@@ -63,8 +64,9 @@ public class MainController {
     }
 
     @RequestMapping(path = "/remove", method = RequestMethod.POST)
-    public String remove(HttpSession session) {
-
+    public String remove(HttpSession session, int id) {
+        session.setAttribute("id", id);
+        jobs.delete(id);
         return "redirect:/";
     }
 
