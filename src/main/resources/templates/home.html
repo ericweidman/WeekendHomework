@@ -18,18 +18,20 @@ Welcome {{name}}!
 <input type="text" placeholder="Date Applied" name="dateApplied">
     <button type="submit">Submit</button>
     </form>
-<ol>
-{{#jobs}}
 
+{{#jobs}}
 <form action="/remove" method="post">
-<li>{{companyName}} {{url}} {{dateApplied}}
+    <ol>
+<li>{{companyName}} {{url}} {{dateApplied}}</li>
+    </ol>
 <input type="hidden" value="{{id}}" name="id">
 <button type="submit">Delete</button>
-    <a href="/editJob?editId={{id}}">Edit</a>
-</li>
+</form>
+<form action="/editJob" method="Get">
+<input type="hidden" value="{{id}}" name="editId">
+<button type="submit">Edit</button>
 </form>
 {{/jobs}}
-</ol>
 {{#showNext}}
 <a href="/?page={{nextPage}}">Next</a>
 {{/showNext}}
