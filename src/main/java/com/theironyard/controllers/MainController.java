@@ -34,7 +34,6 @@ public class MainController {
         model.addAttribute("jobs", jobs.findAll());
         return "home";
     }
-
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(HttpSession session, String userName, String password) throws Exception {
         User user = users.findFirstByName(userName);
@@ -47,13 +46,11 @@ public class MainController {
         session.setAttribute("userName", userName);
         return "redirect:/";
     }
-
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
-
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     public String add(HttpSession session, String companyName, String url, String dateApplied) {
         String userName = (String) session.getAttribute("userName");
@@ -62,7 +59,6 @@ public class MainController {
         jobs.save(job);
         return "redirect:/";
     }
-
     @RequestMapping(path = "/remove", method = RequestMethod.POST)
     public String remove(HttpSession session, int id) {
         session.setAttribute("id", id);
