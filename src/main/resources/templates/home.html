@@ -26,11 +26,16 @@ Welcome {{name}}!
 <input type="hidden" value="{{id}}" name="id">
 <button type="submit">Delete</button>
     <a href="/editJob?editId={{id}}">Edit</a>
-
 </li>
 </form>
 {{/jobs}}
 </ol>
+{{#showNext}}
+<a href="/?page={{nextPage}}">Next</a>
+{{/showNext}}
+{{#showLast}}
+<a href="/?page={{lastPage}}">Previous</a>
+{{/showLast}}
 {{/user}}
 </body>
 </html>

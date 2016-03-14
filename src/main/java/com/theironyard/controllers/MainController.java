@@ -6,6 +6,8 @@ import com.theironyard.services.JobRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +29,22 @@ public class MainController {
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(HttpSession session, Model model) {
+    public String home(HttpSession session, Model model, Integer page) {
         String userName = (String) session.getAttribute("userName");
         User user = users.findFirstByName(userName);
-        model.addAttribute("user", user);
-        model.addAttribute("jobs", jobs.findAll());
+        page = (page == null) ? 0 : page;
+        PageRequest pr = new PageRequest(page, 1);
+        Page<Job> p;
+        p = jobs.findAll(pr);
+            model.addAttribute("user", user);
+            model.addAttribute("jobs", p);
+            model.addAttribute("nextPage", page + 1);
+            model.addAttribute("showNext", p.hasNext());
+            model.addAttribute("lastPage", page - 1);
+            model.addAttribute("showLast", p.hasPrevious());
         return "home";
     }
+
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(HttpSession session, String userName, String password) throws Exception {
         User user = users.findFirstByName(userName);
