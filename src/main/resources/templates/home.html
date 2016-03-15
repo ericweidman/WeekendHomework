@@ -17,20 +17,21 @@ Welcome {{name}}!
 <input type="text" placeholder="Listing URL" name="url">
 <input type="text" placeholder="Date Applied" name="dateApplied">
     <button type="submit">Submit</button>
-    </form>
+</form>
+<ol>
 {{#jobs}}
-<form action="/remove" method="post">
-    <ol>
-<li>{{companyName}} {{url}} {{dateApplied}}</li>
-    </ol>
-<input type="hidden" value="{{id}}" name="id">
+<li>{{companyName}} {{url}} {{dateApplied}}
+<form style="display:inline-block" action="/remove" method="post">
+<input type="hidden" value="{{id}}" name="id"/>
 <button type="submit">Delete</button>
 </form>
-<form action="/editJob" method="Get">
-<input type="hidden" value="{{id}}" name="editId">
+<form style="display:inline-block" action="/editJob" method="Get">
+<input type="hidden" value="{{id}}" name="editId"/>
 <button type="submit">Edit</button>
 </form>
+</li>
 {{/jobs}}
+</ol>
 {{#showNext}}
 <a href="/?page={{nextPage}}">Next</a>
 {{/showNext}}

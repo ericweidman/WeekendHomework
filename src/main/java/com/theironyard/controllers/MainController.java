@@ -33,7 +33,7 @@ public class MainController {
         String userName = (String) session.getAttribute("userName");
         User user = users.findFirstByName(userName);
         page = (page == null) ? 0 : page;
-        PageRequest pr = new PageRequest(page, 1);
+        PageRequest pr = new PageRequest(page, 20);
         Page<Job> p;
         p = jobs.findAll(pr);
             model.addAttribute("user", user);
